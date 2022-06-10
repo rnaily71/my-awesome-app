@@ -26,11 +26,11 @@ jobs:
       
       - name: Create new ElasticBeanstalk Application version
         run: |
-        aws elasticbeanstalk create-application-version \
-        --application-name MyAwesomeapp \
-        --source-bundle S3Bucket="my-awesome-app-deploy-rck",S3Key="deploy_package.zip" \
-        --version-label "ver-${{ github.sha }}" \
-        --description "commit-sha-${{ github.sha }}"
+          aws elasticbeanstalk create-application-version \
+          --application-name MyAwesomeapp \
+          --source-bundle S3Bucket="my-awesome-app-deploy-rck",S3Key="deploy_package.zip" \
+          --version-label "ver-${{ github.sha }}" \
+          --description "commit-sha-${{ github.sha }}"
 
       - name: Deploy new ElasticBeanstalk Application Version
         run: aws elasticbeanstalk update-environment --environment-name Myawesomeapp-env --version-label "ver-${{ github.sha }}"
